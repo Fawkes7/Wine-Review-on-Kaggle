@@ -46,5 +46,5 @@ def getNounsAdjs(description):
 
 if __name__=='__main__':
     tqdm.pandas()
-    feature = df['description_Cleaned_1'][0:1].progress_apply(getNounsAdjs)
+    feature = df['description_Cleaned_1'].progress_apply(getNounsAdjs)
     feature.to_csv('Feature.csv')
