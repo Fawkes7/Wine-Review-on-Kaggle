@@ -16,7 +16,7 @@ as the notebook, then simply run the notebook line by line, and you can see the 
 
 **Feature.csv:** This is the generated csv file from featureExtractor.py. This file is used in the wine_reviews_visualization.ipynb for generating a word cloud.
 
-## Third-party Modules:
+## Third-party Modules
 Following third-party modules were used for the project:
 1. numpy
 2. matplotlib
