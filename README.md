@@ -1,20 +1,18 @@
 # Wine-Review-on-Kaggle
 Visualization on Kaggle Wine Reviews dataset
 
-This repo contains the necessary code and files for running visualizations of the wine review dataset.
+The project aims to visualize the Kaggle Wine Reviews dataset with concentration on the dimension of Price, Score, Country of Origin, and Grape Variety. 
 
 ## Dataset
 To download the dataset, head over to the following link: https://www.kaggle.com/zynicide/wine-reviews. 
-For this project, we will be using the following file in the dataset: 'winemag-data-130k-v2.csv'. Save this in the same folder where the clone for the repo is.
+For this project, we will be using the following file in the dataset: 'winemag-data-130k-v2.csv'. It should be stored in the main diretory of the repo.
 
 ## File Structure 
-**dataProcessing.py:** This function performs the necessary data preprocessing for wine_reviews_visualization.ipynb and featureExtractor.py.
+**dataProcessing.py:** It preprocesses the raw data, removing the duplicates and filling the missing information with the mean/mode of its category. The output serves as the input to featureExtractor.py and wine_reviews_visualization.ipynb. 
 
-**Wine_reviews_visualization.ipynb:** The main visualizations for our analysis are present in this notebook. If you have saved the dataset in the same folder
-as the notebook, then simply run the notebook line by line, and you can see the visualizations; otherwise, set the path of your dataset in the code. The code has headings with numbering to make you understand what is being being visualized. Simply run the entire notebook, and you can review the visualizations.
+**Wine_reviews_visualization.ipynb:** The main visualizations for our analysis are present in this notebook. Change the path of the dataloader if custom directory is used. Otherwise, it works out-of-the-box. In the notebook, we visualized the distribution of the price and scores and their correlation of wines with respect to the whole dataset as well as to the countries of origin. Grape variey analysis is conducted solely with the country of origin. 
 
-**featureExtractor.py:** This code was used for extracting the nouns and adjectives from the 'description' column of the dataset. This function outputs a 
-.csv file. You don't need to run this in order to generate the csv file. It is already present in the repo.
+**featureExtractor.py:** The feature extractor utlizes spacy to parse the nouns and adjectives from the wine descriptions. We also provided the parsed features for 'winemag-data-130k-v2' in the repository
 
 **Feature.csv:** This is the generated csv file from featureExtractor.py. This file is used in the wine_reviews_visualization.ipynb for generating a word cloud.
 
