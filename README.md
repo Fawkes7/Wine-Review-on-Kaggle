@@ -5,7 +5,7 @@ This repo contains the necessary code and files for running visualizations of th
 
 ## Dataset
 To download the dataset, head over to the following link: https://www.kaggle.com/zynicide/wine-reviews. 
-For this project, we will be using the following dataset: 'winemag-data-130k-v2.csv'. Save this in the same folder where the clone for the repo is.
+For this project, we will be using the following file in the dataset: 'winemag-data-130k-v2.csv'. Save this in the same folder where the clone for the repo is.
 
 ## File Structure 
 **Wine_reviews_visualization.ipynb:** The main visualizations for our analysis are present in this notebook. If you have saved the dataset in the same folder
