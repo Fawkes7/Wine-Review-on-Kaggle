@@ -8,7 +8,7 @@ from dataProcessing import data_processing
 
 
 def normalize_text(text):
-    '''this function normalizes the text and \n'''
+    '''this function normalizes the text and removes \n'''
     tm1 = re.sub('<pre>.*?</pre>', '', text, flags=re.DOTALL)
     tm2 = re.sub('<code>.*?</code>', '', tm1, flags=re.DOTALL)
     tm3 = re.sub('<[^>]+>©', '', tm1, flags=re.DOTALL)
