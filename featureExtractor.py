@@ -4,36 +4,16 @@ import pandas as pd
 import spacy
 from spacy.lang.en.stop_words import STOP_WORDS
 from tqdm import tqdm
-
-df = pd.read_csv('./winemag-data-130k-v2.csv', index_col=0)
-# drop duplicated rows
-df.drop_duplicates(('description', 'title'), inplace=True)
-# drop rows with missing prices
-df[pd.notnull(df.price)]
-total = df.isnull().sum().sort_values(ascending = False)
-percent = (df.isnull().sum()/df.isnull().count()*100).sort_values(ascending = False)
-missing_data  = pd.concat([total, percent], axis=1, keys=['Total', 'Percent'])
-
-# Imputing missing values
-for col in ('region_2', 'designation', 'taster_twitter_handle', 'taster_name', 'region_1'):
-    df[col]=df[col].fillna('Unknown')
-df['province'] = df['province'].fillna(df['province'].mode())
-df['price'] = df['price'].fillna(df['price'].mean())
+from dataProcessing import data_processing
 
 
-nlp = spacy.load('en_core_web_lg')
 def normalize_text(text):
+    '''this function normalizes the text and \n'''
     tm1 = re.sub('<pre>.*?</pre>', '', text, flags=re.DOTALL)
     tm2 = re.sub('<code>.*?</code>', '', tm1, flags=re.DOTALL)
     tm3 = re.sub('<[^>]+>©', '', tm1, flags=re.DOTALL)
     return tm3.replace("\n", "")
 
-
-df['description_Cleaned_1'] = df['description'].apply(normalize_text)
-spacy_stopwords = spacy.lang.en.stop_words.STOP_WORDS
-
-punctuations = string.punctuation
-stopwords = STOP_WORDS
 
 def getNounsAdjs(description):
     '''get the nouns and adjs from the description'''
@@ -47,6 +27,23 @@ def getNounsAdjs(description):
     return features
 
 if __name__=='__main__':
+
+    #reading the dataset
+    df = pd.read_csv('./winemag-data-130k-v2.csv', index_col=0)
+    # doing data processing
+    df=data_processing(df)
+    
+    #Loading the pretrained model. Assigns word vectors, POS tags, dependency parses and named entities.
+    nlp = spacy.load('en_core_web_lg') 
+    
+    #normalizing the text
+    df['description_Cleaned_1'] = df['description'].apply(normalize_text)
+    
+    #tqdm shows the progress
     tqdm.pandas()
+    
+    # applying getNounAdjs to the normalized column
     feature = df['description_Cleaned_1'].progress_apply(getNounsAdjs)
-    feature.to_csv('Feature.csv')
+    
+    #saving the extracted features to csv
+    feature.to_csv('Features.csv')
