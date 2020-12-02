@@ -3,11 +3,12 @@ import re
 import pandas as pd
 import spacy
 from spacy.lang.en.stop_words import STOP_WORDS
-import time
 from tqdm import tqdm
 
-df = pd.read_csv('./data/winemag-data-130k-v2.csv', index_col=0)
+df = pd.read_csv('./winemag-data-130k-v2.csv', index_col=0)
+# drop duplicated rows
 df.drop_duplicates(('description', 'title'), inplace=True)
+# drop rows with missing prices
 df[pd.notnull(df.price)]
 total = df.isnull().sum().sort_values(ascending = False)
 percent = (df.isnull().sum()/df.isnull().count()*100).sort_values(ascending = False)
@@ -35,6 +36,7 @@ punctuations = string.punctuation
 stopwords = STOP_WORDS
 
 def getNounsAdjs(description):
+    '''get the nouns and adjs from the description'''
     doc = nlp(description)
     features = [chunk.text for chunk in doc.noun_chunks]
     review = str(" ".join([i.lemma_ for i in doc]))
