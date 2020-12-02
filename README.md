@@ -1,5 +1,5 @@
 # Wine-Review-on-Kaggle
-Prediction and Visualization on Kaggle Wine Reviews dataset
+Visualization on Kaggle Wine Reviews dataset
 
 This repo contains the necessary code and files for running visualizations of the wine review dataset.
 
