@@ -14,5 +14,5 @@ as the notebook, then simply run the notebook line by line, and you can see the 
 **featureExtractor.py:** This code was used for extracting the nouns and adjectives from the 'description' column of the dataset. This function outputs a 
 .csv file. You don't need to run this in order to generate the csv file. It is already present in the repo.
 
-**Feature.csv:** This is the generated csv file from the featureExtractor.py code. This file is used in the wine_reviews_visualization.ipynb for generating a word cloud.
+**Feature.csv:** This is the generated csv file from featureExtractor.py. This file is used in the wine_reviews_visualization.ipynb for generating a word cloud.
 
